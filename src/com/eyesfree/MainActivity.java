@@ -2,13 +2,12 @@ package com.eyesfree;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.eyesfree.ShakeDetector.OnShakeListener;
 
@@ -48,17 +47,21 @@ public class MainActivity extends Activity {
 						 */
 						handleShakeEvent(count);
 					}
-
+					
 					private void handleShakeEvent(int count) {
+						setContentView(R.layout.activity_main);
 						long actualTime = System.currentTimeMillis();
 						if (actualTime - lastUpdate < 200) {
 					        return;
 					      }
 					      lastUpdate = actualTime;
 					      
+					      TextView tv = (TextView) findViewById(R.id.shakeCount);
+					      tv.setText("Current Shake Count"+'\n'+count);
+					      
 					      // Placeholder Notification of Activation
-					      Toast.makeText(MainActivity.this, "Shake Detected" +'\n' +count, Toast.LENGTH_SHORT)
-					      .show();
+					      //Toast.makeText(MainActivity.this, "Shake Detected" +'\n' +count, Toast.LENGTH_SHORT)
+					      //.show();
 					}
 				});
 	}
