@@ -2,13 +2,14 @@ package com.eyesfree;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-
 import com.eyesfree.ShakeDetector.OnShakeListener;
 
 public class MainActivity extends Activity {
@@ -43,7 +44,7 @@ public class MainActivity extends Activity {
 						/*
 						 * The following method, "handleShakeEvent(count):" is a stub //
 						 * method you would use to setup whatever you want done once the
-						 * device has been shook.
+						 !* device has been shook.
 						 */
 						handleShakeEvent(count);
 					}
@@ -57,11 +58,26 @@ public class MainActivity extends Activity {
 					      lastUpdate = actualTime;
 					      
 					      TextView tv = (TextView) findViewById(R.id.shakeCount);
-					      tv.setText("Current Shake Count"+'\n'+count);
+				    	  if (count!=0){
+					    	  tv.setText("Current Shake Count"+'\n'+count);
+					      }
+					      else{
+					    	  tv.setText("Shake to get starte.d");
+					      }
 					      
 					      // Placeholder Notification of Activation
 					      //Toast.makeText(MainActivity.this, "Shake Detected" +'\n' +count, Toast.LENGTH_SHORT)
 					      //.show();
+					      
+					      if (count>=3){
+					    	  
+						      mShakeDetector.zero();
+						      // shake to be in Ouray, CO
+					    	  String uri = "geo:38.0233,-107.6722";
+						      startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
+						      
+						      
+					      }
 					}
 				});
 	}
@@ -87,4 +103,6 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	
+	
 }
