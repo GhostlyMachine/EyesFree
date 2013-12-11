@@ -1,3 +1,3 @@
 com.android.ide.eclipse.adt.fixLegacyEditors=1
-com.android.ide.eclipse.adt.sdk=C\:\\Users\\Drew\\Devices\\Development\\sdk
+com.android.ide.eclipse.adt.sdk=/home/cmccarty/bin/adt-bundle-linux-x86_64-20130729/sdk
 eclipse.preferences.version=1
